@@ -78,9 +78,13 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
           // 배경 Positioned 끝
           // TextFormField Positioned 시작
-          Positioned(
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeIn,
             top: 180,
-            child: Container(
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 500),
+              curve: Curves.easeIn,
               padding: EdgeInsets.all(20.0),
               height: isSignupScreen ? 280.0 : 250.0,
               // 현재 실행중인 기기의 width 픽셀의 -40 만큼의 크기
@@ -340,7 +344,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
           // TextFormField Positioned 끝
           // 전송버튼 시작.
-          Positioned(
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeIn,
             top: isSignupScreen ? 430 : 390,
             right: 0,
             left: 0,
