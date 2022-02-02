@@ -1,5 +1,7 @@
+import 'package:chatting_app/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:chatting_app/config/pallete.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginSignupScreen extends StatefulWidget {
   const LoginSignupScreen({Key? key}) : super(key: key);
@@ -9,6 +11,8 @@ class LoginSignupScreen extends StatefulWidget {
 }
 
 class _LoginSignupScreenState extends State<LoginSignupScreen> {
+  final _authentication = FirebaseAuth.instance;
+
   bool isSignupScreen = true;
   final _formKey = GlobalKey<FormState>();
 
@@ -252,7 +256,8 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   keyboardType: TextInputType.emailAddress,
                                   key: ValueKey(2),
                                   validator: (value) {
-                                    if (value!.isEmpty || value.contains('@')) {
+                                    if (value!.isEmpty ||
+                                        !value.contains('@')) {
                                       return 'Please enter a valid email address';
                                     }
                                     return null;
@@ -453,8 +458,36 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   child: GestureDetector(
-                    onTap: () {
-                      _tryValidation();
+                    onTap: () async {
+                      if (isSignupScreen) {
+                        _tryValidation();
+
+                        try {
+                          final newUser = await _authentication
+                              .createUserWithEmailAndPassword(
+                            email: userEmail,
+                            password: userPassword,
+                          );
+
+                          if (newUser.user != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatScreen(),
+                              ),
+                            );
+                          }
+                        } catch (e) {
+                          print(e);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                                  Text('Please check your email and password'),
+                              backgroundColor: Colors.blue,
+                            ),
+                          );
+                        }
+                      }
                     },
                     child: Container(
                       decoration: BoxDecoration(
