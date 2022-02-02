@@ -17,6 +17,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
       backgroundColor: Pallete.backgroundColor,
       body: Stack(
         children: [
+          // 배경 Positioned 시작
           Positioned(
             top: 0,
             left: 0,
@@ -73,6 +74,8 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ),
           ),
+          // 배경 Positioned 끝
+          // TextFormField Positioned 시작
           Positioned(
             top: 180,
             child: Container(
@@ -162,32 +165,96 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     ],
                   ),
                   Container(
+                    margin: EdgeInsets.only(top: 20),
                     child: Form(
                       child: Column(
                         children: [
                           TextFormField(
                             decoration: const InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.account_circle,
-                                color: Pallete.iconColor,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Pallete.textColor1,
+                                prefixIcon: Icon(
+                                  Icons.account_circle,
+                                  color: Pallete.iconColor,
                                 ),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(35.0),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Pallete.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
                                 ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Pallete.textColor1,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Pallete.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(35.0),
+                                hintText: 'User name',
+                                hintStyle: TextStyle(
+                                    fontSize: 14, color: Pallete.textColor1),
+                                contentPadding: EdgeInsets.all(10)),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.account_circle,
+                                  color: Pallete.iconColor,
                                 ),
-                              ),
-                            ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Pallete.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Pallete.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                hintText: 'User name',
+                                hintStyle: TextStyle(
+                                    fontSize: 14, color: Pallete.textColor1),
+                                contentPadding: EdgeInsets.all(10)),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          TextFormField(
+                            decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.account_circle,
+                                  color: Pallete.iconColor,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Pallete.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Pallete.textColor1,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(35.0),
+                                  ),
+                                ),
+                                hintText: 'User name',
+                                hintStyle: TextStyle(
+                                    fontSize: 14, color: Pallete.textColor1),
+                                contentPadding: EdgeInsets.all(10)),
                           )
                         ],
                       ),
@@ -197,6 +264,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ),
           ),
+          // TextFormField Positioned 끝
         ],
       ),
     );
