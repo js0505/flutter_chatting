@@ -120,294 +120,302 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   ),
                 ],
               ),
-              child: Column(
-                children: [
-                  //LOGIN, SIGNUP tap button
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(
-                            () {
-                              isSignupScreen = false;
-                            },
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              'LOGIN',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: !isSignupScreen
-                                    ? Pallete.activeColor
-                                    : Pallete.textColor1,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Column(
+                  children: [
+                    //LOGIN, SIGNUP tap button
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            setState(
+                              () {
+                                isSignupScreen = false;
+                              },
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                'LOGIN',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: !isSignupScreen
+                                      ? Pallete.activeColor
+                                      : Pallete.textColor1,
+                                ),
                               ),
-                            ),
-                            if (!isSignupScreen)
-                              Container(
-                                margin: EdgeInsets.only(top: 3),
-                                height: 5,
-                                width: 55,
-                                color: Colors.orange,
-                              )
-                          ],
+                              if (!isSignupScreen)
+                                Container(
+                                  margin: EdgeInsets.only(top: 3),
+                                  height: 5,
+                                  width: 55,
+                                  color: Colors.orange,
+                                )
+                            ],
+                          ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(
-                            () {
-                              isSignupScreen = true;
-                            },
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Text(
-                              'SIGNUP',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: !isSignupScreen
-                                    ? Pallete.textColor1
-                                    : Pallete.activeColor,
+                        GestureDetector(
+                          onTap: () {
+                            setState(
+                              () {
+                                isSignupScreen = true;
+                              },
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Text(
+                                'SIGNUP',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: !isSignupScreen
+                                      ? Pallete.textColor1
+                                      : Pallete.activeColor,
+                                ),
                               ),
-                            ),
-                            if (isSignupScreen)
-                              Container(
-                                margin: EdgeInsets.only(top: 3),
-                                height: 5,
-                                width: 55,
-                                color: Colors.orange,
-                              )
-                          ],
+                              if (isSignupScreen)
+                                Container(
+                                  margin: EdgeInsets.only(top: 3),
+                                  height: 5,
+                                  width: 55,
+                                  color: Colors.orange,
+                                )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  // TextFormField Container
-                  if (isSignupScreen)
-                    //Signup Form
-                    Container(
-                      margin: EdgeInsets.only(top: 20),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              key: ValueKey(1),
-                              validator: (value) {
-                                if (value!.isEmpty || value.length < 4) {
-                                  return 'Please enter at least 4 characters';
-                                }
-                                return null;
-                              },
-                              onSaved: (value) {
-                                userName = value!;
-                              },
-                              decoration: const InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.account_circle,
-                                    color: Pallete.iconColor,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
-                                    ),
-                                  ),
-                                  hintText: 'User name',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14, color: Pallete.textColor1),
-                                  contentPadding: EdgeInsets.all(10)),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            TextFormField(
-                              key: ValueKey(2),
-                              validator: (value) {
-                                if (value!.isEmpty || value.contains('@')) {
-                                  return 'Please enter a valid email address';
-                                }
-                                return null;
-                              },
-                              onSaved: (value) {
-                                userEmail = value!;
-                              },
-                              decoration: const InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.email,
-                                    color: Pallete.iconColor,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
-                                    ),
-                                  ),
-                                  hintText: 'email',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14, color: Pallete.textColor1),
-                                  contentPadding: EdgeInsets.all(10)),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            TextFormField(
-                              key: ValueKey(3),
-                              validator: (value) {
-                                if (value!.isEmpty || value.length < 6) {
-                                  return 'Please enter at least 6 characters';
-                                }
-                                return null;
-                              },
-                              onSaved: (value) {
-                                userPassword = value!;
-                              },
-                              decoration: const InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.lock,
-                                    color: Pallete.iconColor,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
-                                    ),
-                                  ),
-                                  hintText: 'password',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14, color: Pallete.textColor1),
-                                  contentPadding: EdgeInsets.all(10)),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
-                  //Login Form
-                  if (!isSignupScreen)
-                    Container(
-                      margin: EdgeInsets.only(top: 20),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              key: ValueKey(4),
-                              validator: (value) {
-                                if (value!.isEmpty || value.contains('@')) {
-                                  return 'Please enter a valid email address';
-                                }
-                                return null;
-                              },
-                              onSaved: (value) {
-                                userEmail = value!;
-                              },
-                              decoration: const InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.email,
-                                    color: Pallete.iconColor,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
+                    // TextFormField Container
+                    if (isSignupScreen)
+                      //Signup Form
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                key: ValueKey(1),
+                                validator: (value) {
+                                  if (value!.isEmpty || value.length < 4) {
+                                    return 'Please enter at least 4 characters';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  userName = value!;
+                                },
+                                decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.account_circle,
+                                      color: Pallete.iconColor,
                                     ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
                                     ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
+                                    hintText: 'User name',
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Pallete.textColor1),
+                                    contentPadding: EdgeInsets.all(10)),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              TextFormField(
+                                key: ValueKey(2),
+                                validator: (value) {
+                                  if (value!.isEmpty || value.contains('@')) {
+                                    return 'Please enter a valid email address';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  userEmail = value!;
+                                },
+                                decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.email,
+                                      color: Pallete.iconColor,
                                     ),
-                                  ),
-                                  hintText: 'email',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14, color: Pallete.textColor1),
-                                  contentPadding: EdgeInsets.all(10)),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            TextFormField(
-                              key: ValueKey(5),
-                              validator: (value) {
-                                if (value!.isEmpty || value.length < 6) {
-                                  return 'Please enter at least 6 characters';
-                                }
-                                return null;
-                              },
-                              onSaved: (value) {
-                                userPassword = value!;
-                              },
-                              decoration: const InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.lock,
-                                    color: Pallete.iconColor,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
                                     ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Pallete.textColor1,
+                                    hintText: 'email',
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Pallete.textColor1),
+                                    contentPadding: EdgeInsets.all(10)),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              TextFormField(
+                                key: ValueKey(3),
+                                validator: (value) {
+                                  if (value!.isEmpty || value.length < 6) {
+                                    return 'Please enter at least 6 characters';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  userPassword = value!;
+                                },
+                                decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.lock,
+                                      color: Pallete.iconColor,
                                     ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(35.0),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
                                     ),
-                                  ),
-                                  hintText: 'password',
-                                  hintStyle: TextStyle(
-                                      fontSize: 14, color: Pallete.textColor1),
-                                  contentPadding: EdgeInsets.all(10)),
-                            ),
-                          ],
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
+                                    ),
+                                    hintText: 'password',
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Pallete.textColor1),
+                                    contentPadding: EdgeInsets.all(10)),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    )
-                ],
+                    //Login Form
+                    if (!isSignupScreen)
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                key: ValueKey(4),
+                                validator: (value) {
+                                  if (value!.isEmpty || value.contains('@')) {
+                                    return 'Please enter a valid email address';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  userEmail = value!;
+                                },
+                                decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.email,
+                                      color: Pallete.iconColor,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
+                                    ),
+                                    hintText: 'email',
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Pallete.textColor1),
+                                    contentPadding: EdgeInsets.all(10)),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              TextFormField(
+                                key: ValueKey(5),
+                                validator: (value) {
+                                  if (value!.isEmpty || value.length < 6) {
+                                    return 'Please enter at least 6 characters';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value) {
+                                  userPassword = value!;
+                                },
+                                decoration: const InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.lock,
+                                      color: Pallete.iconColor,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
+                                    ),
+                                    hintText: 'password',
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Pallete.textColor1),
+                                    contentPadding: EdgeInsets.all(10)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                  ],
+                ),
               ),
             ),
           ),
