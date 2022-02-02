@@ -158,9 +158,41 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               )
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
+                  Container(
+                    child: Form(
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.account_circle,
+                                color: Pallete.iconColor,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Pallete.textColor1,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35.0),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Pallete.textColor1,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(35.0),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
