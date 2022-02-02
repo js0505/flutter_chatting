@@ -475,8 +475,13 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               ),
             ),
             // 전송버튼 끝.
-            Positioned(
-              top: MediaQuery.of(context).size.height - 125,
+            // Google 로그인 버튼 시작
+            AnimatedPositioned(
+              duration: Duration(milliseconds: 500),
+              curve: Curves.easeIn,
+              top: isSignupScreen
+                  ? MediaQuery.of(context).size.height - 125
+                  : MediaQuery.of(context).size.height - 165,
               right: 0,
               left: 0,
               child: Column(
