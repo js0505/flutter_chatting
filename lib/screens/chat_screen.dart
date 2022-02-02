@@ -1,3 +1,4 @@
+import 'package:chatting_app/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -25,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (user != null) {
       try {
         loggedUser = user;
-        print(loggedUser!);
+        print(loggedUser!.email);
       } catch (e) {
         print(e);
       }
@@ -34,9 +35,30 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void logOut() async {
+      await _authentication.signOut();
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginSignupScreen(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Chat screen'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              logOut();
+            },
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: Text('Chat Screen'),

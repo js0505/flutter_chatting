@@ -363,6 +363,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   onSaved: (value) {
                                     userEmail = value!;
                                   },
+                                  onChanged: (value) {
+                                    userEmail = value;
+                                  },
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.email,
@@ -404,32 +407,37 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   onSaved: (value) {
                                     userPassword = value!;
                                   },
+                                  onChanged: (value) {
+                                    userPassword = value;
+                                  },
                                   decoration: const InputDecoration(
-                                      prefixIcon: Icon(
-                                        Icons.lock,
-                                        color: Pallete.iconColor,
+                                    prefixIcon: Icon(
+                                      Icons.lock,
+                                      color: Pallete.iconColor,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
                                       ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Pallete.textColor1,
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(35.0),
-                                        ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Pallete.textColor1,
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(35.0),
-                                        ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Pallete.textColor1,
                                       ),
-                                      hintText: 'password',
-                                      hintStyle: TextStyle(
-                                          fontSize: 14,
-                                          color: Pallete.textColor1),
-                                      contentPadding: EdgeInsets.all(10)),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(35.0),
+                                      ),
+                                    ),
+                                    hintText: 'password',
+                                    hintStyle: TextStyle(
+                                        fontSize: 14,
+                                        color: Pallete.textColor1),
+                                    contentPadding: EdgeInsets.all(10),
+                                  ),
+                                  obscureText: true,
                                 ),
                               ],
                             ),
@@ -470,6 +478,35 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           );
 
                           if (newUser.user != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatScreen(),
+                              ),
+                            );
+                          }
+                        } catch (e) {
+                          print(e);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                                  Text('Please check your email and password'),
+                              backgroundColor: Colors.blue,
+                            ),
+                          );
+                        }
+                      }
+                      if (!isSignupScreen) {
+                        _tryValidation();
+
+                        try {
+                          final loginUser =
+                              await _authentication.signInWithEmailAndPassword(
+                            email: userEmail,
+                            password: userPassword,
+                          );
+
+                          if (loginUser != null) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
