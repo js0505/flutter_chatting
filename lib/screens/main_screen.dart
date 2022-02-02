@@ -215,6 +215,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   onSaved: (value) {
                                     userName = value!;
                                   },
+                                  onChanged: (value) {
+                                    userName = value;
+                                  },
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.account_circle,
@@ -246,6 +249,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   height: 8,
                                 ),
                                 TextFormField(
+                                  keyboardType: TextInputType.emailAddress,
                                   key: ValueKey(2),
                                   validator: (value) {
                                     if (value!.isEmpty || value.contains('@')) {
@@ -255,6 +259,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   },
                                   onSaved: (value) {
                                     userEmail = value!;
+                                  },
+                                  onChanged: (value) {
+                                    userEmail = value;
                                   },
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
@@ -297,6 +304,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   onSaved: (value) {
                                     userPassword = value!;
                                   },
+                                  onChanged: (value) {
+                                    userPassword = value;
+                                  },
                                   decoration: const InputDecoration(
                                       prefixIcon: Icon(
                                         Icons.lock,
@@ -323,6 +333,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                           fontSize: 14,
                                           color: Pallete.textColor1),
                                       contentPadding: EdgeInsets.all(10)),
+                                  obscureText: true,
                                 ),
                               ],
                             ),
