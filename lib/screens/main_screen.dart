@@ -265,6 +265,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             ),
           ),
           // TextFormField Positioned 끝
+          // 전송버튼 시작.
           Positioned(
             top: 430,
             right: 0,
@@ -304,6 +305,33 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   ),
                 ),
               ),
+            ),
+          ),
+          // 전송버튼 끝.
+          Positioned(
+            top: MediaQuery.of(context).size.height - 125,
+            right: 0,
+            left: 0,
+            child: Column(
+              children: [
+                const Text(' or Signup with'),
+                const SizedBox(
+                  height: 10,
+                ),
+                TextButton.icon(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    minimumSize: Size(155, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Pallete.googleColor,
+                  ),
+                  icon: Icon(Icons.add),
+                  label: Text('Google'),
+                ),
+              ],
             ),
           ),
         ],
