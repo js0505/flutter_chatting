@@ -255,7 +255,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                 hintStyle: TextStyle(
                                     fontSize: 14, color: Pallete.textColor1),
                                 contentPadding: EdgeInsets.all(10)),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -265,6 +265,47 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             ),
           ),
           // TextFormField Positioned 끝
+          Positioned(
+            top: 430,
+            right: 0,
+            left: 0,
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.all(15),
+                height: 90,
+                width: 90,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        Colors.orange,
+                        Colors.red,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: Offset(0, 1),
+                      )
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
