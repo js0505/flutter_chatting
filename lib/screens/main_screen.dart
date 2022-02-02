@@ -10,6 +10,23 @@ class LoginSignupScreen extends StatefulWidget {
 
 class _LoginSignupScreenState extends State<LoginSignupScreen> {
   bool isSignupScreen = true;
+  final _formKey = GlobalKey<FormState>();
+
+  String userName = '';
+  String userEmail = '';
+  String userPassword = '';
+
+  void _tryValidation() {
+    // 모든 form의 validate 메소드 작동
+    // 리턴된 유효성 결과를 isValid 변수에 저장.
+    final isValid = _formKey.currentState!.validate();
+
+    if (isValid) {
+      // save 메소드가 실행되면
+      // 모든 텍스트폼필드의 onSaved 메소드가 실행됨.
+      _formKey.currentState!.save();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -177,15 +194,26 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             TextFormField(
-                              decoration: InputDecoration(
+                              key: ValueKey(1),
+                              validator: (value) {
+                                if (value!.isEmpty || value.length < 4) {
+                                  return 'Please enter at least 4 characters';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userName = value!;
+                              },
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.account_circle,
                                     color: Pallete.iconColor,
                                   ),
-                                  enabledBorder: const OutlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Pallete.textColor1,
                                     ),
@@ -193,7 +221,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                       Radius.circular(35.0),
                                     ),
                                   ),
-                                  focusedBorder: const OutlineInputBorder(
+                                  focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Pallete.textColor1,
                                     ),
@@ -202,7 +230,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                     ),
                                   ),
                                   hintText: 'User name',
-                                  hintStyle: const TextStyle(
+                                  hintStyle: TextStyle(
                                       fontSize: 14, color: Pallete.textColor1),
                                   contentPadding: EdgeInsets.all(10)),
                             ),
@@ -210,6 +238,16 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               height: 8,
                             ),
                             TextFormField(
+                              key: ValueKey(2),
+                              validator: (value) {
+                                if (value!.isEmpty || value.contains('@')) {
+                                  return 'Please enter a valid email address';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userEmail = value!;
+                              },
                               decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
@@ -240,6 +278,16 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               height: 8,
                             ),
                             TextFormField(
+                              key: ValueKey(3),
+                              validator: (value) {
+                                if (value!.isEmpty || value.length < 6) {
+                                  return 'Please enter at least 6 characters';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userPassword = value!;
+                              },
                               decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.lock,
@@ -275,9 +323,20 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             TextFormField(
+                              key: ValueKey(4),
+                              validator: (value) {
+                                if (value!.isEmpty || value.contains('@')) {
+                                  return 'Please enter a valid email address';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userEmail = value!;
+                              },
                               decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
@@ -308,6 +367,16 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               height: 8,
                             ),
                             TextFormField(
+                              key: ValueKey(5),
+                              validator: (value) {
+                                if (value!.isEmpty || value.length < 6) {
+                                  return 'Please enter at least 6 characters';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                userPassword = value!;
+                              },
                               decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.lock,
@@ -359,29 +428,34 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [
-                        Colors.orange,
-                        Colors.red,
+                child: GestureDetector(
+                  onTap: () {
+                    _tryValidation();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Colors.orange,
+                          Colors.red,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: Offset(0, 1),
+                        )
                       ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
                     ),
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        spreadRadius: 1,
-                        blurRadius: 1,
-                        offset: Offset(0, 1),
-                      )
-                    ],
-                  ),
-                  child: const Icon(
-                    Icons.arrow_forward,
-                    color: Colors.white,
+                    child: const Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
